@@ -35,6 +35,7 @@ def main():
     parser.add_argument('-seed', default=123456, type=int) # 种子
     parser.add_argument('-loss_type', default='union', type=str) # loss type: class就仅更新分类的参数；sim就仅更新triple loss；union就同时更新二者参数
     parser.add_argument('-hidden_layers', default=12, type=int) # bert的层数
+    parser.add_argument('-pretrained_model_path', default='/home/liangming/nas/lm_params/chinese_L-12_H-768_A-12/', type=str) # bert参数地址
 
     #训练参数
     parser.add_argument('-train_batch_size', default=64, type=int)
@@ -87,7 +88,8 @@ def main():
     train_list, val_list, test_list, code_to_name, name_to_code, standard_name_list = read_data(data_path, logger, args)
 
     #load model
-    pretrained_model_path = '/home/liangming/nas/lm_params/chinese_L-12_H-768_A-12/'
+    # pretrained_model_path = '/home/liangming/nas/lm_params/chinese_L-12_H-768_A-12/'
+    pretrained_model_path = args.pretrained_model_path
     bert_config, bert_tokenizer, bert_model = get_pretrained_model(pretrained_model_path, logger, args)
 
     #获取dataset

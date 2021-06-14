@@ -9,27 +9,30 @@ This repository is the source code of paper: "A combined recall and rank framewo
 
 `/output` contains the output results(such as saved model, middel output, caches for prediction), you should pass a output_name parameter each time you run the experiment.
 
+We use the bert trained on Chinese corpus provided by google. You could change the defalut path in train.py and rerank_keywords.py by the arg parameter `pretrained_model_path`, you could also change it in the running command
+
 ### train and evaluate
 #### candidate generator
 Train:
 ```
 # k_fold_id range from [0, 4]
 # device_id is used when you have multiple gpu, starts from 0 
-python train.py -output_name={your_output_name} -k_fold={k_fold_id} -device={devicd_id}
+python train.py -output_name={your_output_name} -k_fold={k_fold_id} -device={devicd_id} -pretrained_model_path={your_pretrained_model_path}
+
 
 # if you don't want to use k-fold, just run:
-python train.py -output_name={your_output_name} -device={device_id}
+python train.py -output_name={your_output_name} -device={device_id} -pretrained_model_path={your_pretrained_model_path}
 ```
 
 After you run the following code, there should be a folder `/output/mto_output/{your_output_name}`. If you use k-fold, there should be 5 folders for each fold, to evaluate, just run:
 ```
-python train.py -output_name={your_ourput_name}_test -type=evaluate -k_fold=0 -saved_model_path=./output/mto_output/{your_output_name} -generate_candidates=test -device={device_id}
+python train.py -output_name={your_ourput_name}_test -type=evaluate -k_fold=0 -saved_model_path=./output/mto_output/{your_output_name} -generate_candidates=test -device={device_id} -pretrained_model_path={your_pretrained_model_path}
 ```
 
 #### keywords attentive ranker
 Train
 ```
-python rerank_keywords.py -k_fold={k_fold_id} -output_name={your_output_name} -device={device_id} 
+python rerank_keywords.py -k_fold={k_fold_id} -output_name={your_output_name} -device={device_id} -pretrained_model_path={your_pretrained_model_path}
 ```
 Evaluate
 ```
