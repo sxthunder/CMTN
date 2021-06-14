@@ -28,13 +28,13 @@ def main():
     parser.add_argument('-type', default='train', type=str)
     parser.add_argument('-k_fold', default=-1, type=int) #如果是-1则说明不采用k折，否则说明采用k折的第几折
     parser.add_argument('-merge_classification', default='vote', type=str) # 个数预测：vote则采用投票法，avg则是平均概率
-    parser.add_argument('-merge_sort', default='avg', type=str) # 排序算法: vote则采用投票法，avg则是平均概率
+    parser.add_argument('-merge_sort', default='avg', type=str) # k折融合算法: vote则采用投票法，avg则是平均概率
     parser.add_argument('-generate_candidates', default='no', type=str) # 在预测过程中，是否生成候选词并保存在output_name下，如果是no则不生成，如果不是no则是保存的名字
     parser.add_argument('-k_fold_cache', default='no', type=str) # 在预测k_fold中，是否采用之前的cache，如果存在cache，会在output_name下存在三个list文件, 避免5个模型进行预测
     parser.add_argument('-add_keywords', default='no', type=str) # 这里不添加关键词信息
     parser.add_argument('-seed', default=123456, type=int) # 种子
     parser.add_argument('-loss_type', default='union', type=str) # loss type: class就仅更新分类的参数；sim就仅更新triple loss；union就同时更新二者参数
-    parser.add_argument('-hidden_layers', default=12, type=int) # loss type: class就仅更新分类的参数；sim就仅更新triple loss；union就同时更新二者参数
+    parser.add_argument('-hidden_layers', default=12, type=int) # bert的层数
 
     #训练参数
     parser.add_argument('-train_batch_size', default=64, type=int)
