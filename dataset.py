@@ -13,7 +13,7 @@ class TripleDataset(Dataset):
         self.code_to_name = code_to_name
         self.name_to_code = name_to_code
         self.tokenizer = tokenizer
-        self.max_len = args.max_len
+        self.max_len = args.max_len.
         self.neg_num = args.neg_num
         self.neg_sample = args.neg_sample
         self.batch_size = args.train_batch_size
