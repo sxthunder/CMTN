@@ -9,6 +9,7 @@
 
 import logging
 import os
+import pandas as pd
 
 '''
 @description: 返回logger可保存log到文件同时打印到console上
